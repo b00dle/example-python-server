@@ -127,3 +127,10 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Server Data
+*.db
+/SERVER_DATA
+
+# pycharm
+/.idea

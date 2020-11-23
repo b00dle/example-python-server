@@ -1,0 +1,299 @@
+basePath: /api
+consumes:
+- application/json
+info:
+  description: Python, Flask and Connexion server fo ReST communication.
+  title: Server ReST Article
+  version: 1.0.0
+produces:
+  - application/json
+swagger: '2.0'
+paths:
+  /dataset:
+    delete:
+      description: delete dataset
+      operationId: rest_api.routes.dataset_route.remove_datasets
+      parameters:
+        - in: query
+          items:
+            type: integer
+          name: ids
+          required: true
+          type: array
+        - in: query
+          name: access_token
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: delete dataset
+      tags:
+        - dataset
+    get:
+      description: get dataset
+      operationId: rest_api.routes.dataset_route.get_dataset_list
+      parameters:
+        - in: query
+          name: access_token
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            items:
+              properties:
+                id:
+                  type: integer
+                name:
+                  type: string
+                description:
+                  type: string
+                data_points:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      name:
+                        type: string
+                      some_int_property:
+                        type: integer
+                      some_float_property:
+                        type: number
+                      some_bool_property:
+                        type: boolean
+              type: object
+            type: array
+      summary: get dataset
+      tags:
+        - dataset
+    post:
+      description: add dataset
+      operationId: rest_api.routes.dataset_route.create_dataset
+      parameters:
+        - in: query
+          name: access_token
+          required: true
+          type: string
+        - description: dataset to be added
+          in: body
+          name: dataset
+          required: true
+          schema:
+            properties:
+              name:
+                type: string
+              description:
+                type: string
+            type: object
+      responses:
+        '200':
+          description: OK
+          schema:
+            properties:
+              id:
+                type: integer
+              name:
+                type: string
+              description:
+                type: string
+            type: object
+      summary: add dataset
+      tags:
+        - dataset
+  /dataset/{dataset_id}/data_point/{data_point_id}:
+    post:
+      description: add a data point to a dataset
+      operationId: rest_api.routes.dataset_route.add_data_point
+      parameters:
+        - in: query
+          name: access_token
+          required: true
+          type: string
+        - in: path
+          name: dataset_id
+          required: true
+          type: integer
+        - in: path
+          name: data_point_id
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: OK
+      summary: add a data point to a data set
+      tags:
+        - dataset
+    delete:
+      description: remove a data point from a dataset
+      operationId: rest_api.routes.dataset_route.remove_data_point
+      parameters:
+        - in: query
+          name: access_token
+          required: true
+          type: string
+        - in: path
+          name: dataset_id
+          required: true
+          type: integer
+        - in: path
+          name: data_point_id
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: OK
+      summary: remove a data point from a dataset
+      tags:
+        - dataset
+  /data_point:
+    delete:
+      description: delete data points
+      operationId: rest_api.routes.data_point_route.remove_data_points
+      parameters:
+        - in: query
+          items:
+            type: integer
+          name: ids
+          required: true
+          type: array
+        - in: query
+          name: access_token
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: delete data points
+      tags:
+        - data point
+    get:
+      description: get all data points
+      operationId: rest_api.routes.data_point_route.get_data_point_list
+      parameters:
+        - in: query
+          name: access_token
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            items:
+              properties:
+                id:
+                  type: integer
+                name:
+                  type: string
+                some_int_property:
+                  type: integer
+                some_float_property:
+                  type: number
+                some_bool_property:
+                  type: boolean
+                datasets:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      name:
+                        type: string
+                      description:
+                        type: string
+              type: object
+            type: array
+      summary: get all data points
+      tags:
+        - data point
+    post:
+      description: add data point
+      operationId: rest_api.routes.data_point_route.create_data_point
+      parameters:
+        - in: query
+          name: access_token
+          required: true
+          type: string
+        - description: data point to be added
+          in: body
+          name: data_point
+          required: true
+          schema:
+            properties:
+              name:
+                type: string
+              some_int_property:
+                type: integer
+              some_float_property:
+                type: number
+              some_bool_property:
+                type: boolean
+            type: object
+      responses:
+        '200':
+          description: OK
+          schema:
+            properties:
+              id:
+                type: integer
+              name:
+                type: string
+              some_int_property:
+                type: integer
+              some_float_property:
+                type: number
+              some_bool_property:
+                type: boolean
+            type: object
+      summary: add data point
+      tags:
+        - data point
+  /data_point/{data_point_id}/dataset/{dataset_id}:
+    post:
+      description: add a data point to a dataset
+      operationId: rest_api.routes.data_point_route.add_to_dataset
+      parameters:
+        - in: query
+          name: access_token
+          required: true
+          type: string
+        - in: path
+          name: data_point_id
+          required: true
+          type: integer
+        - in: path
+          name: dataset_id
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: OK
+      summary: add a data point to a dataset
+      tags:
+        - data point
+    delete:
+      description: remove a data point from a dataset
+      operationId: rest_api.routes.data_point_route.remove_from_dataset
+      parameters:
+        - in: query
+          name: access_token
+          required: true
+          type: string
+        - in: path
+          name: data_point_id
+          required: true
+          type: integer
+        - in: path
+          name: dataset_id
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: OK
+      summary: remove a data point from a dataset
+      tags:
+        - data point
