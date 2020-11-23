@@ -43,3 +43,5 @@ The database created during setup (example.db) is a sqlite3 database, which you 
 ```
 sqlite3 example.db
 ```
+
+An Android app for mobile access of this data is available [here](https://github.com/b00dle/example-android-app).
