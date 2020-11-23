@@ -12,7 +12,7 @@ pip install -r requirements.txt
 
 (you may want to create a virtualenv to host your python environment and all dependencies)
 
-Before running the server for the first time, the database needs to be created and a server secret has to be generated. This secret will serve as an access token to all client requests. Execute the setup script to automate these steps:
+Before running the server for the first time, the database needs to be created and a server secret has to be generated. It will be stored as ```secret.json``` at the root of this repo. This secret will serve as an access token to all client requests. Execute the setup script to automate these steps:
 
 ```
 python3 setup.py
@@ -38,7 +38,7 @@ To end the hosting, simply kill the instanciated process e.g. by ```Ctrl+C``` fr
 
 The output of the run command will indicate that the server is available on compatible network cards of the host machine under default port 44100. For documentation of the currently running ReST API and a GUI for request testing, visit ```http://<ip>:<port>/api/ui```, e.g. ```http://localhost:44100/api/ui```.
 
-The database created during setup (da-map-3d.db) is a sqlite3 database, which you can read and write to with any compatible tool, such as the commandline:
+The database created during setup (example.db) is a sqlite3 database, which you can read and write to with any compatible tool, such as the commandline:
 
 ```
 sqlite3 example.db
