@@ -49,6 +49,10 @@ class RequestBodyValidator(validation.RequestBodyValidator):
 
 
 def attach_to(app):
-    # Specifies configurations for ReST API endpoints
-    # routes and callbacks see 'routes' package
+    """
+    The swagger file specifies configurations for ReST API endpoints in yml notation.
+    Connexion will handle auto generation of http routing
+    and produce a Web UI based testing environment at /api/ui.
+    Callback definitions for the various routes -> see 'routes' package
+    """
     app.add_api('swagger.yml')
