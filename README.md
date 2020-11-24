@@ -1,6 +1,6 @@
 # Example Python Server
 
-This is a HTTP ReST Server providing remote access to example data. It is implemented as a python3 flask server using connexion to define the api interface (and swagger doc page) and sqlalchemy as a database ORM.
+This is a HTTP Server providing remote access to example data using a ReST API. It is implemented as a python3 flask server using connexion to define the api interface (and swagger doc page) and sqlalchemy as a database ORM. Additionally, flask routes have been added to illustrate how to to render and server web templates. The implementation supports html & javascript file separation and loading csv data from javascript.
 
 ## Setup
 
@@ -43,5 +43,7 @@ The database created during setup (example.db) is a sqlite3 database, which you 
 ```
 sqlite3 example.db
 ```
+
+Furthermore, the server hosts a sample d3.js visualization hosted at ```http://<ip>:<port>/para-cords```.
 
 An Android app for mobile access of this data is available [here](https://github.com/b00dle/example-android-app).
